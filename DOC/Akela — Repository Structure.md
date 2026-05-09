@@ -118,7 +118,6 @@ frontend/
 ├── package.json
 ├── tsconfig.json
 ├── vite.config.ts
-└── tailwind.config.js
 ```
 
 ---

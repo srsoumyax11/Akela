@@ -136,21 +136,6 @@ react-dom
 
 ---
 
-## TailwindCSS
-
-### Purpose
-
-Rapid overlay styling.
-
----
-
-## Packages
-
-```json id="tailwind-packages"
-tailwindcss
-postcss
-autoprefixer
-```
 
 ---
 

@@ -1,22 +1,84 @@
-# Akela Project Development Rules
+# Akela Rules
 
-## 🌿 Branching Strategy
-- **`main`**: Production-ready code. Only merged from `develop` via PR.
-- **`develop`**: Integration branch for features.
-- **`feature/[name]`**: For new features. Branched from `develop`.
-- **`fix/[name]`**: For bug fixes. Branched from `develop`.
+## Workflow
 
-All branches must be properly tested before merging into the main branch.
+1. Read related documentation before starting work
+2. Make a short implementation plan
+3. Take approval before major changes
+4. Check current git branch before starting any work
+5. Create/switch to proper branch before implementation
+6. Implement feature
+7. Test properly
+8. Get owner confirmation
+9. Make proper git commit
+10. Use the Affilate files always as reference
 
-## 🚀 Release Process
-1. Update the version in `src-tauri/tauri.conf.json`.
-2. Commit and push the changes to `develop`.
-3. Create a git tag following semantic versioning (e.g., `v0.1.0`):
-   ```bash
-   git tag -a v0.1.0 -m "Release version 0.1.0"
-   git push origin v0.1.0
-   ```
-4. The GitHub Workflow will automatically:
-   - Build the Windows app (MSI and EXE).
-   - Create a draft release on GitHub with the artifacts.
-5. Review the draft release on GitHub, add release notes, and publish it.
+---
+
+## Code Rules
+
+- Keep code modular
+- Small reusable components/functions
+- Avoid large files
+- Do not mix UI and business logic
+- Follow existing architecture
+
+---
+
+## Project Tracking
+
+### log.txt
+Update briefly after work.
+
+Example:
+- Added draggable overlay
+- Fixed transparency issue
+
+---
+
+### todo.md
+Track:
+- skipped tasks
+- future improvements
+- technical debt
+
+---
+
+## Git Rules
+
+### Branches
+
+- main → stable code
+- develop → active development
+- feature/* → new features
+- bugfix/* → fixes
+
+---
+
+### Branch Checking
+
+Before writing code:
+- check current branch first
+- never work directly on main
+- use proper feature/bugfix branch
+
+Example:
+feature/overlay-prototype
+
+---
+
+### Commit Format
+
+Examples:
+- feat: add overlay dragging
+- fix: resolve overlay flicker
+- docs: update roadmap
+
+---
+
+## Documentation
+
+When changing architecture or flow:
+- update related docs
+- update roadmap if needed
+- update todo.md if work is postponed
