@@ -22,3 +22,54 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Targets
+**/target/
+**/.tauri/
+
+# env files
+.env
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Windows specific
+*.msi
+*.exe
+
+# Cache
+.cache/
+.npm/
+.pnp.*
+.yarn/
+.rustc_info.json
+.rustenv
+.cargo/registry/
+.cargo/git/
+
+# Tauri specific
+src-tauri/.tauri/
+src-tauri/target/
+src-tauri/binaries/
+src-tauri/window-state.json
+
+# Vite / React specific
+.vite/
+dist/
+dist-ssr/
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.orig
+
+# Testing
+cargo.lock
+
+# Other
+!.gitignore
