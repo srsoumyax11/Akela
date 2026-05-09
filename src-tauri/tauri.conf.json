@@ -12,9 +12,20 @@
   "app": {
     "windows": [
       {
+        "label": "main",
         "title": "akela",
-        "width": 800,
-        "height": 600
+        "width": 820,
+        "height": 48,
+        "decorations": false,
+        "transparent": true,
+        "alwaysOnTop": true,
+        "resizable": false,
+        "minWidth": 820,
+        "minHeight": 48,
+        "maxWidth": 820,
+        "maxHeight": 48,
+        "shadow": false,
+        "skipTaskbar": true
       }
     ],
     "security": {

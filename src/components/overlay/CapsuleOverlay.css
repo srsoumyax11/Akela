@@ -1,0 +1,120 @@
+.capsule-overlay {
+  display: flex;
+  align-items: center;
+  width: 820px;
+  height: 48px;
+  padding: 0 16px;
+  background: rgba(30, 30, 35, 0.5);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+  box-sizing: border-box;
+  color: white;
+  overflow: hidden;
+  user-select: none;
+}
+
+.capsule-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-right: 12px;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  flex-shrink: 0;
+}
+
+.logo-icon {
+  width: 20px;
+  height: 20px;
+  color: #a78bfa;
+}
+
+.ticker-container {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  height: 20px;
+  margin: 0 16px;
+  mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+}
+
+.ticker-text {
+  position: absolute;
+  white-space: nowrap;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+  animation: ticker-scroll 15s linear infinite;
+}
+
+@keyframes ticker-scroll {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+.capsule-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+  padding-left: 12px;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-help {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 28px;
+  padding: 0 12px;
+  background: rgba(139, 92, 246, 0.2);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 9999px;
+  color: #c4b5fd;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-right: 8px;
+}
+
+.btn-help:hover {
+  background: rgba(139, 92, 246, 0.3);
+  border-color: rgba(139, 92, 246, 0.5);
+}
+
+.icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.icon-btn:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.icon-btn.active {
+  color: #34d399;
+}
+
+.icon-btn.inactive {
+  color: #f87171;
+}
+
+.icon-btn.close-btn {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.icon-btn.close-btn:hover {
+  background: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+}

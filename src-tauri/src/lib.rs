@@ -4,10 +4,76 @@ fn greet(name: &str) -> String {
     format!("Hello, {}! You've been greeted from Rust!", name)
 }
 
+use tauri::Manager;
+use tauri_plugin_global_shortcut::{Code, GlobalShortcutExt, Modifiers, Shortcut, ShortcutState};
+use windows::Win32::Foundation::HWND;
+use windows::Win32::UI::WindowsAndMessaging::{
+    GetWindowLongPtrW, SetWindowLongPtrW, GWL_EXSTYLE, WS_EX_TOOLWINDOW, WS_EX_NOACTIVATE,
+};
+
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
+    let ctrl_shift_a = Shortcut::new(Some(Modifiers::CONTROL | Modifiers::SHIFT), Code::KeyA);
+
     tauri::Builder::default()
+        .plugin(
+            tauri_plugin_global_shortcut::Builder::new()
+                .with_handler(move |app, shortcut, event| {
+                    if shortcut == &ctrl_shift_a && event.state() == ShortcutState::Pressed {
+                        if let Some(window) = app.get_webview_window("main") {
+                            let is_visible = window.is_visible().unwrap_or(false);
+                            if is_visible {
+                                let _ = window.hide();
+                            } else {
+                                let _ = window.show();
+                                let _ = window.set_focus();
+                            }
+                        }
+                    }
+                })
+                .build(),
+        )
         .plugin(tauri_plugin_opener::init())
+        .setup(move |app| {
+            let ctrl_shift_a = Shortcut::new(Some(Modifiers::CONTROL | Modifiers::SHIFT), Code::KeyA);
+            let _ = app.global_shortcut().register(ctrl_shift_a);
+
+            if let Some(window) = app.get_webview_window("main") {
+                let _ = window.set_skip_taskbar(true);
+
+                // Native Windows: Hide from Alt+Tab by setting WS_EX_TOOLWINDOW
+                #[cfg(target_os = "windows")]
+                {
+                    use raw_window_handle::HasWindowHandle;
+                    let handle = window.window_handle().unwrap();
+                    if let raw_window_handle::RawWindowHandle::Win32(handle) = handle.as_raw() {
+                        let hwnd = HWND(handle.hwnd.get() as *mut core::ffi::c_void);
+                        unsafe {
+                            let current_style = GetWindowLongPtrW(hwnd, GWL_EXSTYLE);
+                            let _ = SetWindowLongPtrW(
+                                hwnd,
+                                GWL_EXSTYLE,
+                                current_style | (WS_EX_TOOLWINDOW.0 as isize) | (WS_EX_NOACTIVATE.0 as isize),
+                            );
+                        }
+                    }
+                }
+
+                // Position at top-center
+                if let Ok(Some(monitor)) = window.primary_monitor() {
+                    let monitor_size = monitor.size();
+                    let scale_factor = monitor.scale_factor();
+                    let logical_monitor_size = monitor_size.to_logical::<f64>(scale_factor);
+
+                    let window_width = 820.0;
+                    let x = (logical_monitor_size.width - window_width) / 2.0;
+                    let y = 50.0; // Slightly below the top edge
+
+                    let _ = window.set_position(tauri::LogicalPosition::new(x, y));
+                }
+            }
+            Ok(())
+        })
         .invoke_handler(tauri::generate_handler![greet])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
