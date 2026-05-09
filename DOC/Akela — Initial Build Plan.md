@@ -109,16 +109,11 @@ bun create vite frontend --template react-ts
 cd frontend
 
 bun install
-bun add tailwindcss postcss autoprefixer zustand
+bun add postcss autoprefixer zustand
 ```
 
 ---
 
-# Step 4 — Initialize Tailwind
-
-```bash id="tailwind-init"
-bunx tailwindcss init -p
-```
 
 ---
 

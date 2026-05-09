@@ -134,7 +134,6 @@ Characteristics:
 | Language        | Rust               |
 | Shell Framework | Tauri              |
 | Frontend        | React + TypeScript |
-| Styling         | TailwindCSS        |
 | Runtime         | Tokio              |
 | Database        | SQLite             |
 | Serialization   | Serde              |

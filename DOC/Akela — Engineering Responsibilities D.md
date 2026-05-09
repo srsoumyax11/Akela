@@ -274,7 +274,6 @@ frontend/
 | ----------- | ---------- |
 | React       | Critical   |
 | TypeScript  | High       |
-| TailwindCSS | Medium     |
 
 ---
 

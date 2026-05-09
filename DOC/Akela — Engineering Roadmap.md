@@ -12,7 +12,6 @@ Akela
 │   │   │
 │   │   ├── Task — Setup frontend
 │   │   │   ├── Initialize React + Vite
-│   │   │   ├── Install TailwindCSS
 │   │   │   ├── Configure TypeScript
 │   │   │   └── Setup Zustand
 │   │   │

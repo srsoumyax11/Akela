@@ -180,7 +180,6 @@ Akela is built around these principles:
 | Language | Rust |
 | Shell | Tauri v2 |
 | Frontend | React + TypeScript |
-| Styling | TailwindCSS |
 | Runtime | Tokio |
 | Database | SQLite |
 | STT | Whisper.cpp |
@@ -529,7 +528,7 @@ Before you can run or build Akela, ensure your development environment has the f
 ## 🏗️ Project Architecture
 
 Akela uses a **Modular Monolith** architecture:
-- **Frontend**: React, TypeScript, TailwindCSS, Zustand, Framer Motion (managed by Vite).
+- **Frontend**: React, TypeScript, Zustand, Framer Motion (managed by Vite).
 - **Backend**: Rust, Tauri v2, Tokio (Async Runtime).
 - **Storage**: SQLite (via `sqlx`).
 - **AI/STT**: Whisper.cpp (via `whisper-rs`), OpenAI/Gemini APIs.
