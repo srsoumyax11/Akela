@@ -10,7 +10,7 @@ import {
   PawPrint,
 } from 'lucide-react';
 import { invoke } from '@tauri-apps/api/core';
-import { getCurrentWindow } from '@tauri-apps/api/window';
+import { getCurrentWindow, LogicalPosition } from '@tauri-apps/api/window';
 import { useOverlayStore } from '../../store/useOverlayStore';
 import './CapsuleOverlay.css';
 
@@ -34,7 +34,30 @@ export const CapsuleOverlay: React.FC = () => {
   const handleMouseDown = async (e: React.MouseEvent) => {
     // Only drag if the primary mouse button is pressed and we're not clicking a button or its children
     if (e.button === 0 && !(e.target as HTMLElement).closest('button')) {
-      await appWindow.startDragging();
+      const startX = e.screenX;
+      const startY = e.screenY;
+      const initialPos = await appWindow.outerPosition();
+      
+      const onMouseMove = async (moveEvent: MouseEvent) => {
+        const deltaX = moveEvent.screenX - startX;
+        const deltaY = moveEvent.screenY - startY;
+        
+        if (Math.abs(deltaX) > 0 || Math.abs(deltaY) > 0) {
+          // Use our native focus-safe move command
+          await invoke('move_window_no_focus', { 
+            x: initialPos.x + deltaX, 
+            y: initialPos.y + deltaY 
+          });
+        }
+      };
+      
+      const onMouseUp = () => {
+        window.removeEventListener('mousemove', onMouseMove);
+        window.removeEventListener('mouseup', onMouseUp);
+      };
+      
+      window.addEventListener('mousemove', onMouseMove);
+      window.addEventListener('mouseup', onMouseUp);
     }
   };
 
