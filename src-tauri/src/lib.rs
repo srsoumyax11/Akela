@@ -8,7 +8,8 @@ use tauri::Manager;
 use tauri_plugin_global_shortcut::{Code, GlobalShortcutExt, Modifiers, Shortcut, ShortcutState};
 use windows::Win32::Foundation::HWND;
 use windows::Win32::UI::WindowsAndMessaging::{
-    GetWindowLongPtrW, SetWindowLongPtrW, GWL_EXSTYLE, WS_EX_TOOLWINDOW, WS_EX_NOACTIVATE,
+    GetWindowLongPtrW, SetWindowLongPtrW, SetWindowDisplayAffinity, GWL_EXSTYLE, WS_EX_TOOLWINDOW, WS_EX_NOACTIVATE,
+    WDA_EXCLUDEFROMCAPTURE,
 };
 
 mod audio;
@@ -127,6 +128,9 @@ pub fn run() {
                                 GWL_EXSTYLE,
                                 current_style | (WS_EX_TOOLWINDOW.0 as isize) | (WS_EX_NOACTIVATE.0 as isize),
                             );
+
+                            // Stealth Mode: Exclude window from screen capture
+                            let _ = SetWindowDisplayAffinity(hwnd, WDA_EXCLUDEFROMCAPTURE);
                         }
                     }
                 }
