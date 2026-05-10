@@ -8,26 +8,52 @@ import {
   Settings,
   X,
   PawPrint,
+  Loader2,
 } from 'lucide-react';
 import { useFocusSafeDrag } from '../../hooks/useFocusSafeDrag';
+import { useAudioEngine } from '../../hooks/useAudioEngine';
 import { windowService } from '../../services/windowService';
 import { useOverlayStore } from '../../store/useOverlayStore';
+import { useTranscriptStore } from '../../store/useTranscriptStore';
 import './CapsuleOverlay.css';
+
+// Model path relative to the executable / project root
+// In dev mode, Tauri runs from src-tauri, so we go up one level
+const MODEL_PATH = '../models/ggml-base.en.bin';
 
 export const CapsuleOverlay: React.FC = () => {
   const {
     micEnabled,
     speakerEnabled,
-    currentTranscript,
     toggleMic,
     toggleSpeaker,
     setActivePanel
   } = useOverlayStore();
 
+  const { liveText, engineLoading, engineRunning, error } = useTranscriptStore();
+
+  // Initialize the audio engine
+  useAudioEngine(MODEL_PATH);
+
   const { handleMouseDown } = useFocusSafeDrag();
 
   const handleClose = () => {
     windowService.hide();
+  };
+
+  // Determine ticker content based on engine state
+  const getTickerContent = () => {
+    if (error) return `⚠ Engine error: ${error}`;
+    if (engineLoading) return '🔄 Loading Whisper model...';
+    if (!engineRunning) return 'Engine offline';
+    return liveText;
+  };
+
+  const getTickerClass = () => {
+    if (error) return 'ticker-text ticker-error';
+    if (engineLoading) return 'ticker-text ticker-loading';
+    if (liveText !== 'Listening...') return 'ticker-text ticker-active';
+    return 'ticker-text';
   };
 
   return (
@@ -41,8 +67,9 @@ export const CapsuleOverlay: React.FC = () => {
       </div>
 
       <div className="ticker-container">
-        <div className="ticker-text">
-          {currentTranscript || 'Waiting for audio context... listening in background'}
+        <div className={getTickerClass()}>
+          {engineLoading && <Loader2 size={12} className="ticker-spinner" />}
+          {getTickerContent()}
         </div>
       </div>
 
@@ -84,6 +111,9 @@ export const CapsuleOverlay: React.FC = () => {
           <X size={16} />
         </button>
       </div>
+
+      {/* Engine status indicator */}
+      <div className={`engine-dot ${engineRunning ? 'running' : engineLoading ? 'loading' : 'offline'}`} />
     </div>
   );
 };

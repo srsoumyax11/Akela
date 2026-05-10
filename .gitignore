@@ -73,3 +73,6 @@ cargo.lock
 
 # Other
 !.gitignore
+
+/RealtimeSTT-master
+model

@@ -119,3 +119,77 @@
   background: rgba(239, 68, 68, 0.25);
   color: #ff8a8a;
 }
+
+/* ── Ticker States ── */
+
+.ticker-text.ticker-active {
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 500;
+  animation: none;
+  position: relative;
+  transform: none;
+}
+
+.ticker-text.ticker-loading {
+  color: rgba(167, 139, 250, 0.8);
+  animation: none;
+  position: relative;
+  transform: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ticker-text.ticker-error {
+  color: #f87171;
+  animation: none;
+  position: relative;
+  transform: none;
+  font-size: 12px;
+}
+
+.ticker-spinner {
+  animation: spin 1s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ── Engine Status Dot ── */
+
+.engine-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-left: 8px;
+  transition: all 0.3s ease;
+}
+
+.engine-dot.running {
+  background: #34d399;
+  box-shadow: 0 0 6px rgba(52, 211, 153, 0.5);
+  animation: pulse-green 2s ease-in-out infinite;
+}
+
+.engine-dot.loading {
+  background: #a78bfa;
+  animation: pulse-purple 1s ease-in-out infinite;
+}
+
+.engine-dot.offline {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+@keyframes pulse-green {
+  0%, 100% { opacity: 1; box-shadow: 0 0 6px rgba(52, 211, 153, 0.5); }
+  50% { opacity: 0.7; box-shadow: 0 0 12px rgba(52, 211, 153, 0.8); }
+}
+
+@keyframes pulse-purple {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}

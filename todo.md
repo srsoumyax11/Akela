@@ -1,18 +1,26 @@
-# Akela Todo
+# Akela — Fresh Start Roadmap
 
-## Skipped Tasks (from Roadmap)
-- [ ] Setup `Zustand` in frontend.
-- [ ] Configure `tauri.conf.json` for transparent window and always-on-top behavior.
-- [ ] Setup CI/CD (GitHub Actions, Rust/Frontend lints, Windows builds).
-- [ ] Implement Code Formatting standards (rustfmt, clippy, prettier, eslint).
-- [ ] Define Branch Strategy.
-- [ ] Setup Documentation Standards (README structure, Issue/PR templates).
+## 🎯 Phase 1: Core Audio Engine (High Stability)
+- [ ] Implement a clean WASAPI-based Microphone capture loop.
+- [ ] Implement a clean WASAPI-based System Loopback capture (speaker audio).
+- [ ] Develop a `SynchronizationBuffer` to merge Mic and System audio into a single stream.
+- [ ] Ensure the engine can handle sample rate mismatches (e.g., 44.1kHz vs 48kHz).
 
-## Technical Debt
-- [ ] Initialize `src-tauri/src/overlay` with native window logic.
-- [ ] Add `Zustand` store for global application state.
-- [ ] Align with **Affilate files** as per reference rule.
+## 🎙️ Phase 2: Streaming STT (Local First)
+- [ ] Integrate `whisper-rs` (binding for Whisper.cpp).
+- [ ] Download and verify the `base.en` or `small.en` model.
+- [ ] Implement a sliding window buffer for real-time transcription.
+- [ ] Expose live transcripts to the frontend via Tauri Events.
 
-## Future Improvements
-- [ ] Implementation of Epic 2 (Native Overlay Engine).
-- [ ] Audio Engine development.
+## 🐺 Phase 3: AI Context & Chat
+- [ ] Implement "Help Me" trigger logic.
+- [ ] Build the context window (extracting the last X minutes of transcripts).
+- [ ] Integrate streaming AI responses (OpenAI/Gemini).
+
+## 🎨 Phase 4: UI & Polish
+- [ ] Expandable Chat Panel in the overlay.
+- [ ] Transcription Ticker with auto-scroll and manual pause.
+- [ ] Settings panel for Model selection and API keys.
+
+---
+*Last Updated: 2026-05-10*
