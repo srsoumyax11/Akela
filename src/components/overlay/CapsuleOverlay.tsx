@@ -10,7 +10,7 @@ import {
   PawPrint,
 } from 'lucide-react';
 import { invoke } from '@tauri-apps/api/core';
-import { getCurrentWindow, LogicalPosition } from '@tauri-apps/api/window';
+import { getCurrentWindow } from '@tauri-apps/api/window';
 import { useOverlayStore } from '../../store/useOverlayStore';
 import './CapsuleOverlay.css';
 

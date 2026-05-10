@@ -111,10 +111,11 @@
 }
 
 .icon-btn.close-btn {
-  color: rgba(255, 255, 255, 0.3);
+  background: rgba(239, 68, 68, 0.1);
+  color: #f87171;
 }
 
 .icon-btn.close-btn:hover {
-  background: rgba(239, 68, 68, 0.2);
-  color: #f87171;
+  background: rgba(239, 68, 68, 0.25);
+  color: #ff8a8a;
 }
