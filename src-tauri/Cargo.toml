@@ -39,6 +39,7 @@ tracing-subscriber = "0.3"
 anyhow = "1"
 thiserror = "1"
 chrono = "0.4"
+tauri-plugin-window-state = "2.0.0-rc.1"
 
 [target.'cfg(not(any(target_os = "android", target_os = "ios")))'.dependencies]
 tauri-plugin-global-shortcut = "2"

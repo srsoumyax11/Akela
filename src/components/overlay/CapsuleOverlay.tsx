@@ -29,8 +29,19 @@ export const CapsuleOverlay: React.FC = () => {
     await appWindow.close();
   };
 
+  const handleMouseDown = async (e: React.MouseEvent) => {
+    // Only drag if the primary mouse button is pressed and we're not clicking a button
+    if (e.button === 0 && !(e.target instanceof HTMLButtonElement)) {
+      await appWindow.startDragging();
+    }
+  };
+
   return (
-    <div className="capsule-overlay" data-tauri-drag-region>
+    <div 
+      className="capsule-overlay" 
+      data-tauri-drag-region 
+      onMouseDown={handleMouseDown}
+    >
       <div className="capsule-logo" data-tauri-drag-region>
         <Bird className="logo-icon" strokeWidth={2.5} data-tauri-drag-region />
       </div>
