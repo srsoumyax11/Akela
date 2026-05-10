@@ -7,8 +7,7 @@ Akela
 │   │   ├── Task — Create monorepo
 │   │   │   ├── Create root repository
 │   │   │   ├── Configure Cargo workspace
-│   │   │   ├── Configure Bun workspace
-│   │   │   └── Configure pnpm compatibility
+│   │   │   └── Configure Bun workspace
 │   │   │
 │   │   ├── Task — Setup frontend
 │   │   │   ├── Initialize React + Vite

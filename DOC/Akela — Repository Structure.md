@@ -36,7 +36,7 @@ akela/
 ├── LICENSE
 ├── README.md
 ├── package.json
-├── pnpm-workspace.yaml
+├── bun.workspcae.yaml
 └── Cargo.toml
 ```
 
@@ -521,7 +521,7 @@ Cargo
 Recommended:
 
 ```text id="package-manager"
-pnpm
+bun
 ```
 
 ---

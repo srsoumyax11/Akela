@@ -83,7 +83,6 @@ Initialize development environment.
 
 ```text id="m0-tooling"
 - Rust toolchain
-- pnpm
 - Tauri
 - linting
 - formatting

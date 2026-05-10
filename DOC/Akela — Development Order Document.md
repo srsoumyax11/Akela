@@ -68,7 +68,6 @@ Create stable engineering foundation.
 
 ```text id="phase0-tools"
 - Rust toolchain
-- pnpm
 - clippy
 - rustfmt
 - eslint
