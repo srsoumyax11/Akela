@@ -7,7 +7,7 @@ import {
   VolumeX, 
   Settings, 
   X,
-  Bird
+  PawPrint,
 } from 'lucide-react';
 import { getCurrentWindow } from '@tauri-apps/api/window';
 import { useOverlayStore } from '../../store/useOverlayStore';
@@ -39,15 +39,17 @@ export const CapsuleOverlay: React.FC = () => {
   return (
     <div 
       className="capsule-overlay" 
-      data-tauri-drag-region 
-      onMouseDown={handleMouseDown}
     >
-      <div className="capsule-logo" data-tauri-drag-region>
-        <Bird className="logo-icon" strokeWidth={2.5} data-tauri-drag-region />
+      <div 
+        className="capsule-logo" 
+        data-tauri-drag-region 
+        onMouseDown={handleMouseDown}
+      >
+        <PawPrint className="logo-icon" strokeWidth={2.5} data-tauri-drag-region />
       </div>
 
-      <div className="ticker-container" data-tauri-drag-region>
-        <div className="ticker-text" data-tauri-drag-region>
+      <div className="ticker-container">
+        <div className="ticker-text">
           {currentTranscript || 'Waiting for audio context... listening in background'}
         </div>
       </div>
