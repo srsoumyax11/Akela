@@ -75,7 +75,7 @@ impl AudioEngine {
                 let mut mic_lock = mic_buffer.lock().unwrap();
                 while let Some(sample) = mic_lock.pop() {
                     if let Some(chunk) = mic_chunk_builder.add_sample(sample) {
-                        info!("Mic Chunk Ready: {:?} (len={})", chunk.timestamp, chunk.samples.len());
+                        // info!("Mic Chunk Ready: {:?} (len={})", chunk.timestamp, chunk.samples.len());
                         let _ = sender.try_send(AudioEvent::ChunkReady(chunk));
                     }
                 }
