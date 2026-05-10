@@ -11,8 +11,13 @@ use windows::Win32::UI::WindowsAndMessaging::{
     GetWindowLongPtrW, SetWindowLongPtrW, GWL_EXSTYLE, WS_EX_TOOLWINDOW, WS_EX_NOACTIVATE,
 };
 
+mod audio;
+
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
+    // Initialize Tracing
+    tracing_subscriber::fmt::init();
+
     let ctrl_shift_a = Shortcut::new(Some(Modifiers::CONTROL | Modifiers::SHIFT), Code::KeyA);
 
     tauri::Builder::default()
@@ -37,6 +42,25 @@ pub fn run() {
         .setup(move |app| {
             let ctrl_shift_a = Shortcut::new(Some(Modifiers::CONTROL | Modifiers::SHIFT), Code::KeyA);
             let _ = app.global_shortcut().register(ctrl_shift_a);
+
+            // Initialize Audio Engine
+            let _handle = app.handle().clone();
+            tauri::async_runtime::spawn(async move {
+                use crate::audio::audio_events::AudioEvent;
+                match audio::init_audio_engine().await {
+                    Ok(mut rx) => {
+                        tracing::info!("Audio Engine initialized successfully");
+                        while let Some(event) = rx.recv().await {
+                            if let AudioEvent::ChunkReady(chunk) = event {
+                                tracing::debug!("Audio Chunk: {:?} ({} samples)", chunk.source, chunk.samples.len());
+                            }
+                        }
+                    }
+                    Err(e) => {
+                        tracing::error!("Failed to initialize audio engine: {}", e);
+                    }
+                }
+            });
 
             // Create Tray Menu
             let show_i = tauri::menu::MenuItem::with_id(app, "show", "Show Akela", true, None::<&str>)?;
