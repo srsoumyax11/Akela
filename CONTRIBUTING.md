@@ -15,6 +15,7 @@ First off, thank you for considering contributing to Akela! It's people like you
 1. Clone the repository: `git clone https://github.com/srsoumyax11/Akela.git`
 2. Install dependencies: `bun install`
 3. Start the development environment: `bun tauri dev`
+   *(Note: The ~140MB Whisper model will download automatically if it's missing!)*
 
 ## 🌿 Branching Strategy
 - `main`: Production-ready code only.
