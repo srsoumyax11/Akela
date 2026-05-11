@@ -1,5 +1,5 @@
 # Database Schema
-
+# Not Important for this MVP FOR NOW
 Akela uses **SQLite** for local, privacy-first data persistence. This ensures all your meeting transcripts and AI insights stay on your machine.
 
 ---
