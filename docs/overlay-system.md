@@ -27,7 +27,7 @@ Upon startup, the Tauri window is configured as:
 
 ### Movement & Persistence
 Even though the window is frameless, it supports dragging.
-- **Native Dragging**: We use Tauri's `start_dragging` to move the window efficiently.
+- **Focus-Safe Dragging**: We use a custom Win32 implementation for window movement to ensure the overlay can be moved without stealing focus from the active meeting window.
 - **Position Persistence**: The window's X/Y coordinates are saved to a local config file and restored on the next launch, even in multi-monitor setups.
 
 ---

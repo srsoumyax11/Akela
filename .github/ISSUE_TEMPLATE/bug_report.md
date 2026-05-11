@@ -1,7 +1,7 @@
 ---
-name: Bug Report
+name: Bug report
 about: Create a report to help us improve
-title: 'bug: '
+title: '[BUG] '
 labels: bug
 assignees: ''
 
@@ -12,9 +12,9 @@ A clear and concise description of what the bug is.
 
 **To Reproduce**
 Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. See error
+1. Start the app via `bun tauri dev`
+2. Perform action '....'
+3. See error in logs or UI
 
 **Expected behavior**
 A clear and concise description of what you expected to happen.
@@ -22,9 +22,10 @@ A clear and concise description of what you expected to happen.
 **Screenshots**
 If applicable, add screenshots to help explain your problem.
 
-**Environment:**
-- OS: [e.g. Windows 11]
-- Version: [e.g. 0.1.0]
+**Desktop (please complete the following information):**
+ - OS: [e.g. Windows 11]
+ - Version [e.g. 0.1.0]
+ - Model Path: [e.g. models/ggml-base.en.bin]
 
 **Additional context**
-Add any other context about the problem here.
+Add any other context about the problem here (e.g., specific audio devices used).

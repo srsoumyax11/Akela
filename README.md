@@ -43,7 +43,7 @@ See the [Full Architecture Documentation](docs/architecture.md) for more details
 - **Windows 10/11**
 - **Rust Toolchain**: [Install Rust](https://www.rust-lang.org/tools/install)
 - **Bun**: [Install Bun](https://bun.sh/)
-- **VS Build Tools**: C++ Desktop Development workload.
+- **VS Build Tools**: [C++ Desktop Development workload](https://visualstudio.microsoft.com/visual-cpp-build-tools/).
 
 ### Installation
 ```bash

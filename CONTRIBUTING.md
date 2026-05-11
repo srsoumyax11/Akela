@@ -7,6 +7,8 @@ First off, thank you for considering contributing to Akela! It's people like you
 ### Prerequisites
 - [Rust](https://www.rust-lang.org/tools/install) (latest stable)
 - [Node.js](https://nodejs.org/) & [Bun](https://bun.sh/)
+- [Git](https://git-scm.com/downloads)
+- [WebView2 Runtime](https://developer.microsoft.com/en-us/microsoft-edge/webview2/) (Usually included in Windows 10/11)
 - Windows 10/11 (Native APIs used)
 
 ### Development Setup
