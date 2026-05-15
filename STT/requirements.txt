@@ -1,3 +1,5 @@
-rich
 mistralai[realtime]
-pyaudio
+rich
+sounddevice
+numpy
+python-dotenv
