@@ -176,7 +176,7 @@ Akela
 │   │
 │   ├── Feature 5.1 — Provider System
 │   │   │
-│   │   ├── Task — OpenAI provider
+│   │   ├── Task — Mistral provider
 │   │   │   ├── Streaming requests
 │   │   │   ├── API key validation
 │   │   │   └── Error handling
