@@ -15,6 +15,8 @@ import { useAudioEngine } from '../../hooks/useAudioEngine';
 import { windowService } from '../../services/windowService';
 import { useOverlayStore } from '../../store/useOverlayStore';
 import { useTranscriptStore } from '../../store/useTranscriptStore';
+import { invoke } from '@tauri-apps/api/core';
+import { SettingsPanel } from './SettingsPanel';
 import './CapsuleOverlay.css';
 
 // Model path relative to the executable / project root
@@ -27,6 +29,7 @@ export const CapsuleOverlay: React.FC = () => {
     speakerEnabled,
     toggleMic,
     toggleSpeaker,
+    activePanel,
     setActivePanel
   } = useOverlayStore();
 
@@ -36,6 +39,23 @@ export const CapsuleOverlay: React.FC = () => {
   useAudioEngine(MODEL_PATH);
 
   const { handleMouseDown } = useFocusSafeDrag();
+
+  React.useEffect(() => {
+    const updateSize = async () => {
+      try {
+        if (activePanel === 'settings') {
+          await invoke('resize_window', { width: 820, height: 600 });
+          await invoke('set_window_interactive', { interactive: true });
+        } else {
+          await invoke('set_window_interactive', { interactive: false });
+          await invoke('resize_window', { width: 820, height: 48 });
+        }
+      } catch (err) {
+        console.error('Failed to resize window:', err);
+      }
+    };
+    updateSize();
+  }, [activePanel]);
 
   const handleClose = () => {
     windowService.hide();
@@ -57,7 +77,8 @@ export const CapsuleOverlay: React.FC = () => {
   };
 
   return (
-    <div className="capsule-overlay">
+    <div className="overlay-container">
+      <div className="capsule-overlay">
       <div
         className="capsule-logo"
         onMouseDown={handleMouseDown}
@@ -96,8 +117,8 @@ export const CapsuleOverlay: React.FC = () => {
         </button>
 
         <button
-          className="icon-btn"
-          onClick={() => setActivePanel('settings')}
+          className={`icon-btn ${activePanel === 'settings' ? 'active' : ''}`}
+          onClick={() => setActivePanel(activePanel === 'settings' ? 'none' : 'settings')}
           title="Settings"
         >
           <Settings size={16} />
@@ -114,6 +135,9 @@ export const CapsuleOverlay: React.FC = () => {
 
       {/* Engine status indicator */}
       <div className={`engine-dot ${engineRunning ? 'running' : engineLoading ? 'loading' : 'offline'}`} />
+      </div>
+
+      {activePanel === 'settings' && <SettingsPanel />}
     </div>
   );
 };

@@ -1,8 +1,10 @@
 mod window;
 mod system;
 mod commands;
+mod db;
 
 use std::sync::Mutex;
+use tauri::Manager;
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
@@ -19,6 +21,12 @@ pub fn run() {
         )
         .plugin(tauri_plugin_opener::init())
         .setup(move |app| {
+            // Initialize Database
+            let conn = db::init_db(app.handle()).expect("Failed to initialize database");
+            app.manage(db::DbState {
+                connection: std::sync::Mutex::new(Some(conn)),
+            });
+
             // Register Global Shortcuts
             system::init_shortcuts(app.handle());
 
@@ -37,7 +45,11 @@ pub fn run() {
             commands::greet, 
             commands::hide_window, 
             commands::show_window_no_focus, 
-            commands::move_window_no_focus
+            commands::move_window_no_focus,
+            commands::resize_window,
+            commands::set_window_interactive,
+            commands::save_api_key,
+            commands::get_api_key
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

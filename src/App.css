@@ -30,9 +30,11 @@ body {
 .app-root {
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 48px;
-  width: 820px;
+  align-items: flex-start;
+  width: 100vw;
+  height: 100vh;
+  padding-top: 0;
+  overflow: hidden;
 }
 
 .content-wrapper {
