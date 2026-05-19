@@ -10,6 +10,12 @@ First off, thank you for considering contributing to Akela! It's people like you
 - [Git](https://git-scm.com/downloads)
 - [WebView2 Runtime](https://developer.microsoft.com/en-us/microsoft-edge/webview2/) (Usually included in Windows 10/11)
 - Windows 10/11 (Native APIs used)
+- - **Windows 10/11**
+- **Rust Toolchain**: [Install Rust](https://www.rust-lang.org/tools/install)
+- **Bun**: [Install Bun](https://bun.sh/)
+- **VS Build Tools**: [C++ Desktop Development workload](https://visualstudio.microsoft.com/visual-cpp-build-tools/).
+- **LLVM**: https://github.com/llvm/llvm-project/releases
+
 
 ### Development Setup
 1. Clone the repository: `git clone https://github.com/srsoumyax11/Akela.git`

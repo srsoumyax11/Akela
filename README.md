@@ -44,6 +44,7 @@ See the [Full Architecture Documentation](docs/architecture.md) for more details
 - **Rust Toolchain**: [Install Rust](https://www.rust-lang.org/tools/install)
 - **Bun**: [Install Bun](https://bun.sh/)
 - **VS Build Tools**: [C++ Desktop Development workload](https://visualstudio.microsoft.com/visual-cpp-build-tools/).
+- **LLVM**: https://github.com/llvm/llvm-project/releases
 
 ### Development Setup
 1. Clone the repository: `git clone https://github.com/srsoumyax11/Akela.git`
