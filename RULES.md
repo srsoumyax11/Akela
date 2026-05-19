@@ -25,25 +25,6 @@
 
 ---
 
-## Project Tracking
-
-### log.txt
-Update briefly after work.
-
-Example:
-- Added draggable overlay
-- Fixed transparency issue
-
----
-
-### todo.md
-Track:
-- skipped tasks
-- future improvements
-- technical debt
-
----
-
 ## Git Rules
 
 ### Branches
