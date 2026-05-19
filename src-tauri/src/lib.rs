@@ -1,10 +1,8 @@
 mod window;
 mod system;
 mod commands;
-mod audio;
 
 use std::sync::Mutex;
-use tauri::Manager;
 
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
@@ -20,8 +18,6 @@ pub fn run() {
                 .build(),
         )
         .plugin(tauri_plugin_opener::init())
-        // Register managed state for the audio engine
-        .manage(commands::AudioEngineState(Mutex::new(None)))
         .setup(move |app| {
             // Register Global Shortcuts
             system::init_shortcuts(app.handle());
@@ -41,11 +37,7 @@ pub fn run() {
             commands::greet, 
             commands::hide_window, 
             commands::show_window_no_focus, 
-            commands::move_window_no_focus,
-            commands::start_audio_engine,
-            commands::stop_audio_engine,
-            commands::set_mic_enabled,
-            commands::set_speaker_enabled
+            commands::move_window_no_focus
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

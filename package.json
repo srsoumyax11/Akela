@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "tauri": "bun scripts/download_model.js && tauri"
+    "tauri": "tauri"
   },
   "dependencies": {
     "@tauri-apps/api": "^2",

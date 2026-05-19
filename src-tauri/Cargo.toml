@@ -35,22 +35,7 @@ anyhow = "1"
 thiserror = "1"
 tauri-plugin-window-state = "2.0.0-rc.1"
 
-# ── Audio Capture ──
-cpal = "0.15"                  # Mic input (cross-platform)
-wasapi = "0.23"                # System loopback (Windows WASAPI)
 
-# ── Audio Processing ──
-rubato = "0.15"                # High-quality resampling to 16kHz
-ringbuf = "0.4"                # Lock-free ring buffer for audio callbacks
-
-# ── Voice Activity Detection ──
-webrtc-vad = "0.4"             # Fast scout VAD (Google WebRTC)
-
-# ── Speech-to-Text ──
-whisper-rs = "0.16"            # whisper.cpp bindings
-
-# ── Inter-thread Communication ──
-crossbeam-channel = "0.5"      # Multi-producer channels
 
 [target.'cfg(not(any(target_os = "android", target_os = "ios")))'.dependencies]
 tauri-plugin-global-shortcut = "2"
